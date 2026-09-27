@@ -19,6 +19,7 @@ from __future__ import annotations
 import subprocess
 import time
 
+
 from openai import OpenAI
 
 from project.models import BASE_URL, API_KEY, LARGE, SMALL
@@ -65,6 +66,7 @@ def main() -> int:
     #
     #   1. Free the model from memory:
     #        subprocess.run(["ollama", "stop", SMALL.name])
+
     #   2. Time one call, exactly as `timed` does above.
     #   3. Time a second, identical call.
     #
@@ -74,6 +76,13 @@ def main() -> int:
     #   Then answer, in DECISIONS.md: your system will call two different
     #   models. What does this measurement tell you about switching between
     #   them inside one request, and what would you do instead?
+
+    subprocess.run(["ollama", "stop", SMALL.name])
+    reply1, cold_secs = timed(client, SHORT, SMALL.name)
+    reply2, warm_secs = timed(client, SHORT, SMALL.name)
+
+    print(f"Cold start: {cold_secs:.2f}s")
+    print(f"Warm call:  {warm_secs:.2f}s")
 
     # TODO 8. Estimate what a real evaluation run would cost hosted.
     #
@@ -90,6 +99,21 @@ def main() -> int:
     #
     #   Label them as estimates. They are not measurements and the price
     #   list is dated {PRICE_DATE}.
+
+    long_prompt_tokens = rows[1]["prompt_tokens"]
+    long_completion_tokens = rows[1]["completion_tokens"]
+
+    cases = 200
+    nights = 14 * 7  # 14 weeks, once a night
+
+    total_input = long_prompt_tokens * cases * nights
+    total_output = long_completion_tokens * cases * nights
+
+    est_small = estimate(total_input, total_output, tier="small")
+    est_large = estimate(total_input, total_output, tier="large")
+
+    print(f"\nNightly eval, 200 cases, 14 weeks (small tier): {est_small.summary()}")
+    print(f"Nightly eval, 200 cases, 14 weeks (large tier): {est_large.summary()}")
 
     write_json("artifacts/week01_cost.json",
                {"rows": rows, "price_list_date": PRICE_DATE})

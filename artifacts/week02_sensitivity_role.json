@@ -1,0 +1,15 @@
+{
+  "variant": "role",
+  "baseline_hits": {
+    "category": 8,
+    "urgency": 10,
+    "due_date": 9,
+    "quote": 10
+  },
+  "variant_hits": {
+    "category": 9,
+    "urgency": 10,
+    "due_date": 9,
+    "quote": 10
+  }
+}

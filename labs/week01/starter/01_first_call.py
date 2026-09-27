@@ -37,13 +37,12 @@ def main() -> int:
         started = time.perf_counter()
 
         # TODO 1. Make the call.
-        #   client.chat.completions.create(...) with:
-        #     model=SMALL.name
-        #     messages=[{"role": "user", "content": QUESTION}]
-        #     temperature=0.0
-        #     max_tokens=200
-        #   Assign the result to `reply`.
-        reply = None
+        reply = client.chat.completions.create(
+            model = SMALL.name,
+            messages = [{'role': 'user', 'content': QUESTION}],
+            temperature = 0.0,
+            max_tokens = 200,
+        )
 
         elapsed = time.perf_counter() - started
 
@@ -57,7 +56,7 @@ def main() -> int:
         step.detail(finish_reason=reply.choices[0].finish_reason)
 
     # TODO 2. Print four things, and be ready to say what each one means.
-    #
+   
     #   a. the answer text            reply.choices[0].message.content
     #   b. the finish reason          reply.choices[0].finish_reason
     #      What would it say if the answer had been cut off, and how would
@@ -69,6 +68,17 @@ def main() -> int:
     #      Which part of it would a user actually feel?
     #
     print("\n--- TODO 2: print the four things here ---\n")
+    print("Answer:", reply.choices[0].message.content)
+    
+    print("Finish reason:", reply.choices[0].finish_reason)
+    if(reply.choices[0].finish_reason == "length"):
+        print("The answer was cut off. the model run out of tokens")
+    elif (reply.choices[0].finish_reason == "stop"):
+        print("The answer was complete. You have more tokens available")
+    
+    print("Prompt tokens:", reply.usage.prompt_tokens) #i control only the promppt tokens
+    print("Completion tokens:", reply.usage.completion_tokens)    
+    print("Elapsed time:", elapsed)         #TTFT + response time
 
     # TODO 3. Close the trace.
     #   Call rec.finish(...) with:
@@ -85,6 +95,8 @@ def main() -> int:
     # A free number, so that cost is visible from day one. Local calls cost
     # nothing, which is convenient and also a distortion, so the course keeps
     # an estimate of what the same call would cost on a metered endpoint.
+
+    rec.finish(output = reply.choices[0].message.content, outcome = "ok")
     if reply is not None:
         est = estimate(reply.usage.prompt_tokens,
                        reply.usage.completion_tokens, tier="small")
