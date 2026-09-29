@@ -1,0 +1,70 @@
+{
+  "model": "qwen3:4b-instruct",
+  "router_hits": 21,
+  "total": 24,
+  "unambiguous": [
+    18,
+    20
+  ],
+  "per_route": {
+    "request": [
+      6,
+      7
+    ],
+    "info": [
+      5,
+      5
+    ],
+    "status": [
+      4,
+      4
+    ],
+    "complaint": [
+      4,
+      4
+    ],
+    "other": [
+      2,
+      4
+    ]
+  },
+  "confusion": {
+    "other->complaint": 1,
+    "other->info": 1,
+    "request->complaint": 1
+  },
+  "policy_fired": {
+    "low_confidence": 2
+  },
+  "evidence_ok": 24,
+  "monolith_hits": 19,
+  "monolith_per_route": {
+    "request": [
+      5,
+      7
+    ],
+    "info": [
+      5,
+      5
+    ],
+    "status": [
+      4,
+      4
+    ],
+    "complaint": [
+      4,
+      4
+    ],
+    "other": [
+      1,
+      4
+    ]
+  },
+  "monolith_unparsed": [
+    "Q-22",
+    "Q-23"
+  ],
+  "monolith_tokens": 19050,
+  "router_tokens": 16023,
+  "routing_call_tokens": 12002
+}

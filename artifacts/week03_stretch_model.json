@@ -1,0 +1,81 @@
+{
+  "qwen3:4b-instruct": {
+    "applied_hits": 21,
+    "classifier_alone": 22,
+    "unambiguous": [
+      18,
+      20
+    ],
+    "per_route": {
+      "request": [
+        6,
+        7
+      ],
+      "info": [
+        5,
+        5
+      ],
+      "status": [
+        4,
+        4
+      ],
+      "complaint": [
+        4,
+        4
+      ],
+      "other": [
+        2,
+        4
+      ]
+    },
+    "evidence_ok": 24,
+    "confidence_min": 0.95,
+    "confidence_max": 1.0,
+    "confidence_distinct": 3,
+    "policy_fired": {
+      "low_confidence": 2
+    },
+    "resident_gb": 3.9,
+    "seconds": 53.96213433195953
+  },
+  "qwen2.5:7b": {
+    "applied_hits": 16,
+    "classifier_alone": 20,
+    "unambiguous": [
+      14,
+      20
+    ],
+    "per_route": {
+      "request": [
+        3,
+        7
+      ],
+      "info": [
+        4,
+        5
+      ],
+      "status": [
+        3,
+        4
+      ],
+      "complaint": [
+        4,
+        4
+      ],
+      "other": [
+        2,
+        4
+      ]
+    },
+    "evidence_ok": 22,
+    "confidence_min": 0.8,
+    "confidence_max": 1.0,
+    "confidence_distinct": 3,
+    "policy_fired": {
+      "evidence": 2,
+      "low_confidence": 5
+    },
+    "resident_gb": 5.0,
+    "seconds": 87.20706137403613
+  }
+}
