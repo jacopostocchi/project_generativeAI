@@ -1,0 +1,1 @@
+Previsione 2026-10-06: blocked 2/8 (range 1-4). Difesa 0: followed su entrambi i modelli. Difese 1-3: il 7b continua a seguire l'iniezione nella maggior parte dei casi; il modello piccolo può bloccarla con la 3. Nessuna difesa a prompt è affidabile.

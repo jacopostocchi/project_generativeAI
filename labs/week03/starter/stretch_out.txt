@@ -1,0 +1,29 @@
+qwen3:4b-instruct: 21/24 routed correctly
+  excluding the ambiguous four: 18/20
+  per route: complaint 4/4  info 5/5  other 2/4  request 6/7  status 4/4
+  evidence verbatim: 24/24
+  confidence: min 0.95 max 1.00 distinct 3
+  policy fired: low_confidence 2
+  confusion pairs, gold to applied:
+    other      -> complaint  1
+    other      -> info       1
+    request    -> complaint  1
+  classifier alone, before the policy: 22/24
+  resident memory (models.py): 3.9 GB, 54.0s for the classifying calls
+
+qwen2.5:7b: 16/24 routed correctly
+  excluding the ambiguous four: 14/20
+  per route: complaint 4/4  info 4/5  other 2/4  request 3/7  status 3/4
+  evidence verbatim: 22/24
+  confidence: min 0.80 max 1.00 distinct 3
+  policy fired: low_confidence 5  evidence 2
+  confusion pairs, gold to applied:
+    request    -> complaint  3
+    request    -> info       1
+    info       -> complaint  1
+    status     -> complaint  1
+    other      -> info       1
+    other      -> complaint  1
+  classifier alone, before the policy: 20/24
+  resident memory (models.py): 5.0 GB, 87.2s for the classifying calls
+

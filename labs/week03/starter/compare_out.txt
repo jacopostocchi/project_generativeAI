@@ -1,0 +1,15 @@
+router: 21/24 routed correctly
+  excluding the ambiguous four: 18/20
+  per route: complaint 4/4  info 5/5  other 2/4  request 6/7  status 4/4
+  evidence verbatim: 24/24
+  confidence: min 0.95 max 1.00 distinct 3
+  policy fired: low_confidence 2
+  confusion pairs, gold to applied:
+    other      -> complaint  1
+    other      -> info       1
+    request    -> complaint  1
+
+                tokens   seconds
+monolith         19050      50.4
+router           16023      94.8
+  of which the routing call: 12002 tokens, 75 per cent of the routed total

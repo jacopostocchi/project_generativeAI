@@ -1,0 +1,35 @@
+model: qwen2.5:7b
+
+ conf  id    gold       pred       esito      evid.  amb
+ 0.80  Q-06  request    request    GIUSTO    ok     -
+ 0.95  Q-13  status     status     GIUSTO    ok     Y
+ 0.95  Q-18  complaint  complaint  GIUSTO    ok     Y
+ 0.95  Q-21  other      complaint  SBAGLIATO ok     -
+ 0.95  Q-24  request    request    GIUSTO    ok     Y
+ 1.00  Q-01  request    request    GIUSTO    ok     -
+ 1.00  Q-02  request    request    GIUSTO    ok     -
+ 1.00  Q-03  request    request    GIUSTO    ok     -
+ 1.00  Q-04  request    request    GIUSTO    ok     -
+ 1.00  Q-05  request    info       SBAGLIATO NO     -
+ 1.00  Q-07  info       info       GIUSTO    ok     -
+ 1.00  Q-08  info       info       GIUSTO    NO     -
+ 1.00  Q-09  info       info       GIUSTO    ok     -
+ 1.00  Q-10  info       info       GIUSTO    ok     -
+ 1.00  Q-11  info       info       GIUSTO    ok     -
+ 1.00  Q-12  status     status     GIUSTO    ok     -
+ 1.00  Q-14  status     status     GIUSTO    ok     -
+ 1.00  Q-15  status     status     GIUSTO    ok     -
+ 1.00  Q-16  complaint  complaint  GIUSTO    ok     Y
+ 1.00  Q-17  complaint  complaint  GIUSTO    ok     -
+ 1.00  Q-19  complaint  complaint  GIUSTO    ok     -
+ 1.00  Q-20  other      info       SBAGLIATO ok     -
+ 1.00  Q-22  other      other      GIUSTO    ok     -
+ 1.00  Q-23  other      other      GIUSTO    ok     -
+
+giuste:    21 su 24
+sbagliate: 3
+invalide:  0 []
+confidenza nelle giuste:    min 0.80  media 0.98  max 1.00
+confidenza nelle sbagliate: min 0.95  media 0.98  max 1.00
+valori distinti di confidenza: [0.8, 0.95, 1.0]
+evidenza non trovata nel testo: ['Q-05', 'Q-08']

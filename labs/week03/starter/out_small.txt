@@ -1,0 +1,70 @@
+model: qwen3:4b-instruct
+
+ conf  id    gold       pred       esito    evid.  amb
+ 0.95  Q-20  other      info       SBAGLIATOok     -
+ 0.95  Q-24  request    request    GIUSTO   ok     Y
+ 0.99  Q-01  request    request    GIUSTO   ok     -
+ 0.99  Q-02  request    request    GIUSTO   ok     -
+ 0.99  Q-03  request    request    GIUSTO   ok     -
+ 0.99  Q-04  request    request    GIUSTO   ok     -
+ 0.99  Q-05  request    request    GIUSTO   ok     -
+ 0.99  Q-06  request    request    GIUSTO   ok     -
+ 0.99  Q-07  info       info       GIUSTO   ok     -
+ 0.99  Q-08  info       info       GIUSTO   ok     -
+ 0.99  Q-09  info       info       GIUSTO   ok     -
+ 0.99  Q-10  info       info       GIUSTO   ok     -
+ 0.99  Q-11  info       info       GIUSTO   ok     -
+ 0.99  Q-12  status     status     GIUSTO   ok     -
+ 0.99  Q-13  status     status     GIUSTO   ok     Y
+ 0.99  Q-14  status     status     GIUSTO   ok     -
+ 0.99  Q-15  status     status     GIUSTO   ok     -
+ 0.99  Q-16  complaint  complaint  GIUSTO   ok     Y
+ 0.99  Q-17  complaint  complaint  GIUSTO   ok     -
+ 0.99  Q-18  complaint  complaint  GIUSTO   ok     Y
+ 0.99  Q-19  complaint  complaint  GIUSTO   ok     -
+ 0.99  Q-21  other      info       SBAGLIATOok     -
+ 1.00  Q-22  other      other      GIUSTO   ok     -
+ 1.00  Q-23  other      other      GIUSTO   ok     -
+
+giuste:    22 su 24
+sbagliate: 2
+invalide:  0 []
+confidenza nelle giuste:    min 0.95  media 0.99  max 1.00
+confidenza nelle sbagliate: min 0.95  media 0.97  max 0.99
+valori distinti di confidenza: [0.95, 0.99, 1.0]
+evidenza non trovata nel testo: []
+model: qwen3:4b-instruct
+
+ conf  id    gold       pred       esito      evid.  amb
+ 0.95  Q-20  other      info       SBAGLIATO ok     -
+ 0.95  Q-24  request    request    GIUSTO    ok     Y
+ 0.99  Q-01  request    request    GIUSTO    ok     -
+ 0.99  Q-02  request    request    GIUSTO    ok     -
+ 0.99  Q-03  request    request    GIUSTO    ok     -
+ 0.99  Q-04  request    request    GIUSTO    ok     -
+ 0.99  Q-05  request    request    GIUSTO    ok     -
+ 0.99  Q-06  request    request    GIUSTO    ok     -
+ 0.99  Q-07  info       info       GIUSTO    ok     -
+ 0.99  Q-08  info       info       GIUSTO    ok     -
+ 0.99  Q-09  info       info       GIUSTO    ok     -
+ 0.99  Q-10  info       info       GIUSTO    ok     -
+ 0.99  Q-11  info       info       GIUSTO    ok     -
+ 0.99  Q-12  status     status     GIUSTO    ok     -
+ 0.99  Q-13  status     status     GIUSTO    ok     Y
+ 0.99  Q-14  status     status     GIUSTO    ok     -
+ 0.99  Q-15  status     status     GIUSTO    ok     -
+ 0.99  Q-16  complaint  complaint  GIUSTO    ok     Y
+ 0.99  Q-17  complaint  complaint  GIUSTO    ok     -
+ 0.99  Q-18  complaint  complaint  GIUSTO    ok     Y
+ 0.99  Q-19  complaint  complaint  GIUSTO    ok     -
+ 0.99  Q-21  other      info       SBAGLIATO ok     -
+ 1.00  Q-22  other      other      GIUSTO    ok     -
+ 1.00  Q-23  other      other      GIUSTO    ok     -
+
+giuste:    22 su 24
+sbagliate: 2
+invalide:  0 []
+confidenza nelle giuste:    min 0.95  media 0.99  max 1.00
+confidenza nelle sbagliate: min 0.95  media 0.97  max 0.99
+valori distinti di confidenza: [0.95, 0.99, 1.0]
+evidenza non trovata nel testo: []
