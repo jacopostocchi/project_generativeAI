@@ -1,0 +1,103 @@
+{
+  "rows": [
+    {
+      "architecture": "A baseline",
+      "green": false,
+      "tool_calls": 16,
+      "tokens": 16358,
+      "seconds": 156.8
+    },
+    {
+      "architecture": "B planner",
+      "green": true,
+      "plan_ok": true,
+      "plan_problems": [],
+      "applied": "applied",
+      "verdict": null,
+      "verdict_reason": null,
+      "fix": "discounts.py: return 0.20 if is_off_peak(booking.start_hour) else 0.0 -> return 0.20 if is_off_peak(booking.start_hour) or booking.start_hour == 20 else 0.0",
+      "review_tokens": 0,
+      "review_seconds": 0.0,
+      "tokens": 2703,
+      "seconds": 35.3
+    },
+    {
+      "architecture": "C planner+reviewer",
+      "green": false,
+      "plan_ok": true,
+      "plan_problems": [],
+      "applied": "not attempted",
+      "verdict": "reject",
+      "verdict_reason": "reviewer produced no valid verdict",
+      "fix": "discounts.py: return start_hour > OFF_PEAK_FROM_HOUR -> return start_hour >= OFF_PEAK_FROM_HOUR",
+      "review_tokens": 0,
+      "review_seconds": 11.8,
+      "tokens": 2611,
+      "seconds": 37.4
+    },
+    {
+      "architecture": "A baseline",
+      "green": false,
+      "tool_calls": 28,
+      "tokens": 33908,
+      "seconds": 137.5
+    },
+    {
+      "architecture": "B planner",
+      "green": false,
+      "plan_ok": null,
+      "plan_problems": [],
+      "applied": "planner output invalid after retries",
+      "verdict": null,
+      "verdict_reason": null,
+      "fix": null,
+      "tokens": 0,
+      "seconds": 32.4
+    },
+    {
+      "architecture": "C planner+reviewer",
+      "green": false,
+      "plan_ok": true,
+      "plan_problems": [],
+      "applied": "not attempted",
+      "verdict": "reject",
+      "verdict_reason": "reviewer produced no valid verdict",
+      "fix": "discounts.py: return start_hour > OFF_PEAK_FROM_HOUR -> return start_hour >= OFF_PEAK_FROM_HOUR",
+      "review_tokens": 0,
+      "review_seconds": 10.9,
+      "tokens": 2596,
+      "seconds": 42.1
+    },
+    {
+      "architecture": "A baseline",
+      "green": false,
+      "tool_calls": 0,
+      "tokens": 0,
+      "seconds": 16.7
+    },
+    {
+      "architecture": "B planner",
+      "green": false,
+      "plan_ok": null,
+      "plan_problems": [],
+      "applied": "planner output invalid after retries",
+      "verdict": null,
+      "verdict_reason": null,
+      "fix": null,
+      "tokens": 0,
+      "seconds": 113.9
+    },
+    {
+      "architecture": "C planner+reviewer",
+      "green": false,
+      "plan_ok": null,
+      "plan_problems": [],
+      "applied": "planner output invalid after retries",
+      "verdict": null,
+      "verdict_reason": null,
+      "fix": null,
+      "tokens": 0,
+      "seconds": 26.6
+    }
+  ]
+}

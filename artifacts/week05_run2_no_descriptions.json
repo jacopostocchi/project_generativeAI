@@ -1,0 +1,107 @@
+{
+  "rows": [
+    {
+      "architecture": "A baseline",
+      "green": false,
+      "tool_calls": 8,
+      "tokens": 4310,
+      "seconds": 38.1
+    },
+    {
+      "architecture": "B planner",
+      "green": false,
+      "plan_ok": null,
+      "plan_problems": [],
+      "applied": "planner output invalid after retries",
+      "failure_detail": "Please return text or include your response in a tool call.",
+      "verdict": null,
+      "verdict_reason": null,
+      "fix": null,
+      "tokens": 0,
+      "seconds": 19.5
+    },
+    {
+      "architecture": "C planner+reviewer",
+      "green": false,
+      "plan_ok": true,
+      "plan_problems": [],
+      "applied": "not attempted",
+      "verdict": "reject",
+      "verdict_reason": "reviewer produced no valid verdict",
+      "fix": "booking.py: if start_hour >= 20: -> if start_hour > 19:",
+      "review_tokens": 0,
+      "review_error": "1 validation error\n__root__\n  Invalid JSON: expected value at line 1 column 1 [type=json_invalid, input_value='REJECT: Changes hour boundary without fixing the comparison logic.']",
+      "review_seconds": 8.7,
+      "tokens": 1906,
+      "seconds": 31.6
+    },
+    {
+      "architecture": "A baseline",
+      "green": true,
+      "tool_calls": 12,
+      "tokens": 6373,
+      "seconds": 44.8
+    },
+    {
+      "architecture": "B planner",
+      "green": false,
+      "plan_ok": null,
+      "plan_problems": [],
+      "applied": "planner output invalid after retries",
+      "failure_detail": "Please return text or include your response in a tool call.",
+      "verdict": null,
+      "verdict_reason": null,
+      "fix": null,
+      "tokens": 0,
+      "seconds": 14.6
+    },
+    {
+      "architecture": "C planner+reviewer",
+      "green": false,
+      "plan_ok": null,
+      "plan_problems": [],
+      "applied": "planner output invalid after retries",
+      "failure_detail": "Please return text or include your response in a tool call.",
+      "verdict": null,
+      "verdict_reason": null,
+      "fix": null,
+      "tokens": 0,
+      "seconds": 20.3
+    },
+    {
+      "architecture": "A baseline",
+      "green": true,
+      "tool_calls": 10,
+      "tokens": 4805,
+      "seconds": 33.7
+    },
+    {
+      "architecture": "B planner",
+      "green": false,
+      "plan_ok": null,
+      "plan_problems": [],
+      "applied": "planner output invalid after retries",
+      "failure_detail": "Please return text or include your response in a tool call.",
+      "verdict": null,
+      "verdict_reason": null,
+      "fix": null,
+      "tokens": 0,
+      "seconds": 17.9
+    },
+    {
+      "architecture": "C planner+reviewer",
+      "green": false,
+      "plan_ok": true,
+      "plan_problems": [],
+      "applied": "not attempted",
+      "verdict": "reject",
+      "verdict_reason": "reviewer produced no valid verdict",
+      "fix": "discounts.py: return 0.20 if is_off_peak(booking.start_hour) else 0.0 -> return 0.20 if is_off_peak(booking.start_hour) or booking.start_hour == OFF_PEAK_FROM_HOUR else 0.0",
+      "review_tokens": 0,
+      "review_error": "1 validation error\n__root__\n  Invalid JSON: expected value at line 1 column 1 [type=json_invalid, input_value='REJECT: Changes behavior for non-off-peak times without fixing general rule.']",
+      "review_seconds": 8.3,
+      "tokens": 2465,
+      "seconds": 31.3
+    }
+  ]
+}
