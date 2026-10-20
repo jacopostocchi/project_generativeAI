@@ -1,0 +1,16 @@
+{
+  "facts": [
+    {
+      "subject": "A. Muller",
+      "kind": "contact_preference",
+      "text": "Prefers phone calls in the morning, not email.",
+      "handle": "fact-f4b562cdb55d4fff",
+      "written_at": "2026-10-20T19:27:56Z"
+    }
+  ],
+  "cases": {
+    "case-5a404563fbaf": "A. Muller",
+    "case-57393725f168": "A. Muller",
+    "case-e91613934883": "A. Muller"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "facts": [
+    {
+      "subject": "A. Muller",
+      "kind": "contact_channel",
+      "text": "Prefers phone calls, never email.",
+      "handle": "fact-e12b2288b71ee5d4",
+      "written_at": "2026-10-20T19:48:57Z"
+    },
+    {
+      "subject": "A. Muller",
+      "kind": "contact_time",
+      "text": "Best reached in the morning.",
+      "handle": "fact-f1534804ea696f8f",
+      "written_at": "2026-10-20T19:48:57Z"
+    },
+    {
+      "subject": "A. Muller",
+      "kind": "language",
+      "text": "Speaks Luxembourgish and German, not French.",
+      "handle": "fact-439caaf9071fb994",
+      "written_at": "2026-10-20T19:48:57Z"
+    }
+  ],
+  "cases": {}
+}
