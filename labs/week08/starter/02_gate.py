@@ -92,3 +92,85 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+
+WRITTEN_ANSWER = """
+PART 1, the gate.
+
+The gated step is `submit`, and it is the only one. The criterion is
+consequence, not confidence: `submit` is the only node whose effect leaves
+the system and cannot be undone. It files a case with the administration, and
+downstream of that case a citizen receives a letter with an amount on it. A
+model that is very confident about a wrong figure is exactly the case the
+gate exists for, so gating by confidence would skip precisely the cases where
+it is needed.
+
+Why the other three are not gated:
+
+  gather   an idempotent read with no external effect. When it fails it
+           fails downward: no passage, rather than an invented passage.
+           Retry plus fallback already cover its failure modes, and a human
+           in front of a search adds no information the search did not have.
+  price    the same, and its worst failure (drift) is not visible to the
+           eye: a renamed payload looks correct to a person reading it. The
+           right defence there is validation, not someone's attention.
+  draft    a pure function of the state. It calls nothing and writes
+           nothing, and its output is inside the payload the approver reads
+           at the gate anyway.
+
+The underlying reason there is exactly one: the approver's attention is the
+scarcest resource in the system. Four prompts for one case teach them to
+click through, and an approver who clicks through is worse than no gate,
+because it produces a signature on something unread. You spend it once, at
+the irreversible step.
+
+The payload carries the exact arguments, the evidence, the `degraded` flag
+and the `missing` list. It deliberately does NOT carry a summary written by a
+model: the component whose judgment is being checked would also be writing
+the account of itself, and the approver would be approving the account rather
+than the action.
+
+All three paths are implemented and demonstrated across two separate
+processes, thread_id RB-2026-0042, SqliteSaver on
+artifacts/week08_runs.sqlite:
+
+  approve   submitted True,  decision approve, side effect SUBMITTED
+  reject    submitted False, decision reject,  no side effect
+  edit      submitted True,  decision edit,    fee 60.00 -> 55.00, and the
+            EDITED amount is what gets filed, not the original
+
+The `edit` path is not an extra. The most frequent response from a real
+approver is neither approve nor reject, it is "approve with one field
+changed". A gate without an edit path forces correct work to be thrown away
+over one wrong field, and so teaches the approver to approve rather than to
+correct.
+
+An approval left unanswered past the timeout: default to NOT filing, with the
+verdict recorded as "timeout" and no identity in the record, because nobody
+decided. That protects the citizen and the administration, not the run's
+completion rate. It is also the default the unattended batch in week 10 will
+use: request_approval(payload, unattended=True) returns it instead of
+waiting.
+
+PART 2, the part that is not on any slide.
+
+On resume the interrupted node restarts from its FIRST line, so everything
+above interrupt() executes twice. That much is in the lecture. What is not:
+the recorded state will not show you the duplicate. The first execution never
+returns, it raises to persist the interrupt, so its return value is discarded
+while whatever it did to the outside world is not.
+
+Measured with interrupt_smoke_test.py: the side effect above the interrupt
+prints in BOTH processes, and `side_effects` in the state contains it once.
+In the paused state it does not appear at all. Executed twice, recorded once.
+
+So the failure mode is not "the state gets messy". It is a case filed twice,
+or an email sent twice, or a payment taken twice, on a run that looks clean
+afterwards. The only record you have is the one that does not show the
+duplicate.
+
+The rule that follows is narrow and absolute: above an interrupt, read only.
+Everything that writes goes below, in the branch that has already seen the
+verdict. Two constraints follow for my project: the gated node is the only
+place a write happens, and the write is idempotent on case_id, so a replay is
+detectable rather than invisible.
+"""

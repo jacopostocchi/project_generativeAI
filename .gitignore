@@ -2,3 +2,6 @@
 __pycache__/
 *.pyc
 .venv/
+labs/week08/Claude outputs/
+labs/week08/Claude outputs/
+artifacts/*.sqlite

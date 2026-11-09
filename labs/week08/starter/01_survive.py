@@ -116,3 +116,57 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+
+WRITTEN_ANSWER = """
+The seed is 42. The two configurations are NO_POLICY (one attempt, no
+fallback, no validation) and HARDENED (three attempts, exponential backoff
+with jitter, max_elapsed 3.0, a fallback on search, validate_fee on fees).
+
+                correct   WRONG   degraded   failed
+    baseline          1       0          2        5
+    hardened          2       0          5        1
+
+What hardening bought: not correct answers. It moved four of the five
+outright failures into the degraded column, which is to say it turned silence
+into a partial answer that says what is missing. The only extra `correct` is
+`flaky`, the control case, where a single retry makes the fault disappear
+entirely and where retrying is genuinely the right response. Concluding from
+that one row that robustness means retry is exactly the mistake the row
+exists to expose.
+
+The `empty` row stays `failed` after hardening, and that is correct: nothing
+was retrieved, so there is nothing to degrade to. A pipeline that answered
+anyway on `empty` would gain a `correct` row by inventing the data. An honest
+failure is the best result available there.
+
+The attempt counts are the evidence that this is a ladder and not a retry
+wrapper:
+
+    timeout / rate_limit / server_error   search x3 then fallback, fees x3 then degrade
+    malformed                             fees x1   validation, not retry
+    drift                                 fees x1   the call SUCCEEDED
+    flaky                                 x2        retry does its job
+    slow / empty                          x1        no error to retry
+
+On `drift` and `malformed` the counter reads one. If it read three,
+`is_retryable` would have put a contract failure on the retryable side and
+the policy would be paying three times for the same wrong answer.
+
+On the WRONG column: it is 0 in both configurations, and in neither case is
+that a safety property worth boasting about. It is 0 because the `drift` fault
+renames the KEY, so fee.value.get("fee_eur") reads None instead of a plausible
+number: the wrong answer gives itself away, policy or no policy. What
+validation changes is who catches it and how early, not whether it is
+catchable: validate_fee rejects the renamed shape on the first attempt, which
+is why the fees step reports one try instead of three, and why the answer that
+reaches the user says the fee is missing instead of dropping it in silence.
+
+What neither column defends against is a fault that keeps the contract and
+corrupts the content: fee_eur: 75.0, a float, under the right key, with the
+right period. validate_fee passes it, and the row would read WRONG in the
+hardened configuration too. That is the honest limit of this harness: it
+reaches the transport and the contract layers, and the judgment layer is not
+injectable from outside, because nothing about that response is an error.
+Catching it needs a goldset and an expected value, which is week 10, not a
+retry policy.
+"""
